@@ -16,15 +16,9 @@ use Illuminate\Support\Carbon;
 
 class PublicBookingController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, Package $package)
     {
-        $packageId = $request->query('package');
-        $package = $packageId ? Package::find($packageId) : null;
-        
-        if (!$package) {
-            return redirect('/')->withErrors(['error' => 'Silakan pilih paket terlebih dahulu']);
-        }
-        
+        // Package sudah otomatis di-resolve oleh Laravel route model binding
         return view('bookings.public', compact('package'));
     }
 

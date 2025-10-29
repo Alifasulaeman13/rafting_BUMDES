@@ -16,7 +16,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('book.store') }}" class="mt-6 space-y-5">
+        <form method="POST" action="{{ route('public.booking.store', $package) }}" class="mt-6 space-y-5">
             @csrf
             <input type="hidden" name="package_id" value="{{ old('package_id', $package ? $package->id : '') }}" required />
 
@@ -52,7 +52,7 @@
 <script>
     // Log data saat submit form Booking Publik
     (function() {
-        const form = document.querySelector('form[action="{{ route('book.store') }}"]');
+        const form = document.querySelector('form');
         if (!form) return;
         form.addEventListener('submit', function() {
             const payload = {
